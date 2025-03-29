@@ -12,20 +12,9 @@ import EnrollmentRoutes from './Kambaz/Enrollments/routes.js';
 
 const app = express();
 
-const allowedOrigins = [
-    "http://localhost:5173",
-  "https://a5-sychan91-kambaz-react-web-app.netlify.app",
-]
-
 app.use(cors({
     credentials: true,
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-},
+    origin: process.env.NETLIFY_URL || "http://localhost:5173",
 }));
 
 const sessionOptions = {
