@@ -10,8 +10,9 @@ export function findModulesForCourse(courseId) {
 
 export function createModule(module) {
     const newModule = {...module, _id: uuidv4()};
-    db.modules = [...db.modules, newModule];
-    return newModule;
+    return model.create(newModule);
+    // db.modules = [...db.modules, newModule];
+    // return newModule;
 }
 
 export function deleteModule(moduleId) {
