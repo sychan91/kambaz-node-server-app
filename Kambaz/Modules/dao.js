@@ -1,9 +1,11 @@
+import model from "./model.js";
 import db from "../Database/index.js";
 import {v4 as uuidv4} from "uuid";
 
 export function findModulesForCourse(courseId) {
-    const {modules} = db;
-    return modules.filter((module) => module.course === courseId);
+    // const {modules} = db;
+    // return modules.filter((module) => module.course === courseId);
+    return model.find({course: courseId});
 }
 
 export function createModule(module) {
