@@ -5,7 +5,11 @@ import * as enrollmentsDao from '../Enrollments/dao.js';
 
 export default function UserRoutes(app) {
     const createUser = async (req, res) => { };
-    const deleteUser = async (req, res) => { };
+
+    const deleteUser = async (req, res) => {
+      const status = await dao.deleteUser(req.params.userId);
+      res.json(status);
+     };
 
     const findAllUsers = async (req, res) => {
       const {role, name} = req.query;
@@ -94,20 +98,20 @@ export default function UserRoutes(app) {
         res.json(newCourse);
       };
 
-      app.get("/api/courses/:cid/users", (req, res) => {
-        const { cid } = req.params;
-        const enrolledUserIds = db.enrollments
-          .filter((e) => e.course === cid)
-          .map((e) => e.user);
-        const users = db.users.filter((u) => enrolledUserIds.includes(u._id));
-        res.send(users);
-      });
+      // app.get("/api/courses/:cid/users", (req, res) => {
+      //   const { cid } = req.params;
+      //   const enrolledUserIds = db.enrollments
+      //     .filter((e) => e.course === cid)
+      //     .map((e) => e.user);
+      //   const users = db.users.filter((u) => enrolledUserIds.includes(u._id));
+      //   res.send(users);
+      // });
 
-      app.delete("/api/users/:uid", (req, res) => {
-        const { uid } = req.params;
-        db.users = db.users.filter((u) => u._id !== uid);
-        res.send({ status: "deleted" });
-      });
+      // app.delete("/api/users/:uid", (req, res) => {
+      //   const { uid } = req.params;
+      //   db.users = db.users.filter((u) => u._id !== uid);
+      //   res.send({ status: "deleted" });
+      // });
 
     app.post('/api/users', createUser);
     app.get('/api/users', findAllUsers);
