@@ -7,9 +7,9 @@ export default function AssignmentRoutes(app) {
         res.json(assignments);
     });
 
-    app.delete('/api/assignments/:aid', (req, res) => {
+    app.delete('/api/assignments/:aid', async (req, res) => {
         const {aid} = req.params;
-        const result = dao.deleteAssignment(aid);
+        const result = await dao.deleteAssignment(aid);
         res.json(result);
     });
 

@@ -9,8 +9,9 @@ export function findAssignmentForCourse(courseId) {
 }
 
 export function deleteAssignment(assignmentId) {
-    const {assignments} = db;
-    db.assignments = assignments.filter((assignment) => assignment._id !== assignmentId);
+    // const {assignments} = db;
+    // db.assignments = assignments.filter((assignment) => assignment._id !== assignmentId);
+    return model.deleteOne({_id: assignmentId});
 }
 
 export function updateAssignment(assignmentId, assignmentUpdates) {
