@@ -21,7 +21,8 @@ export function updateAssignment(assignmentId, assignmentUpdates) {
 }
 
 export function createAssignment(assignment) {
+    // db.assignments = [...db.assignments, newAssignment];
+    // return newAssignment;
     const newAssignment = {...assignment, _id: uuidv4()};
-    db.assignments = [...db.assignments, newAssignment];
-    return newAssignment;
+    return model.create(newAssignment);
 }
