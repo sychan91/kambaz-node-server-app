@@ -32,6 +32,7 @@ export async function deleteCourse(courseId) {
   // db.courses = courses.filter((course) => course._id !== courseId);
   // db.enrollments = enrollments.filter((enrollment) => enrollment.course !== courseId);
   const status = await model.deleteOne({_id: courseId});
+  await enrollmentModel.deleteMany({course: courseId});
   return status;
 }
 

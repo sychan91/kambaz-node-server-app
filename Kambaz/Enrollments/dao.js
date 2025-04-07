@@ -1,12 +1,14 @@
 import db from "../Database/index.js";
 import model from "./model.js";
 
-export function enrollUserInCourse(user, course) {
-    // const enrollment = { user: userId, course: courseId };
+export async function enrollUserInCourse(user, course) {
+  const existing = await model.findOne({ user, course });
+  if (existing) return existing;
+  return model.create({ user, course, _id: `${user}-${course}` });
+}
+  // const enrollment = { user: userId, course: courseId };
     // db.enrollments.push(enrollment);
     // return enrollment;
-    return model.create({user, course, _id: `${user}-${course}`});
-  }
   
   export function unenrollUserFromCourse(user, course) {
     // db.enrollments = db.enrollments.filter(
