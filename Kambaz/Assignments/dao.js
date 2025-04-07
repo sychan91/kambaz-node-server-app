@@ -14,10 +14,11 @@ export function deleteAssignment(assignmentId) {
 }
 
 export function updateAssignment(assignmentId, assignmentUpdates) {
-    const {assignments} = db;
-    const assignment = assignments.find((assignment) => assignment._id === assignmentId);
-    Object.assign(assignment, assignmentUpdates);
-    return assignment;
+    // const {assignments} = db;
+    // const assignment = assignments.find((assignment) => assignment._id === assignmentId);
+    // Object.assign(assignment, assignmentUpdates);
+    // return assignment;
+    return model.updateOne({_id: assignmentId}, {$set: assignmentUpdates});
 }
 
 export function createAssignment(assignment) {
